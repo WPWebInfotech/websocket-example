@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chatBox {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            overflow-y: scroll;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Chat</h1>
+    <div id="chatBox"></div>
+    <input type="text" id="messageInput" placeholder="Type a message..." />
+
+    <script>
+        // Connect to the WebSocket server
+        var conn = new WebSocket('ws://localhost:8045');
+
+        // Get the chat box and input field
+        var chatBox = document.getElementById('chatBox');
+        var messageInput = document.getElementById('messageInput');
+
+        // On receiving a message from the server, display it
+        conn.onmessage = function(e) {
+            var message = e.data;
+            chatBox.innerHTML += message + '<br>';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        };
+
+        // Send a message when the user presses Enter
+        messageInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter' && messageInput.value.trim() !== '') {
+                conn.send(messageInput.value);
+                messageInput.value = ''; // Clear input after sending
+            }
+        });
+    </script>
+</body>
+</html>

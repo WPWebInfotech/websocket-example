@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple WebSocket Chat</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Php WebSocket: Simple Chat Example Without Package</h1>
+    <div id="chatLog"></div>
+    <div id="messageContainer">
+      <input type="text" id="messageInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()" id="sendButton">Send</button>
+    </div>
+
+    <script>
+      var socket = new WebSocket("ws://localhost:8120");
+
+      socket.onopen = function () {
+        console.log("WebSocket connected");
+      };
+
+      socket.onmessage = function (event) {
+        document.getElementById("chatLog").innerHTML +=
+          "<div>" + event.data + "</div>";
+      };
+
+      function sendMessage() {
+        var message = document.getElementById("messageInput").value;
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send(message);
+          document.getElementById("messageInput").value = "";
+        } else {
+          console.log("WebSocket is not open.");
+        }
+      }
+    </script>
+  </body>
+</html>

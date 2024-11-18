@@ -4,48 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Chat</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #chatBox {
-            width: 100%;
-            height: 200px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            padding: 10px;
-            overflow-y: scroll;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>WebSocket Chat</h1>
+    <h1>PHP WebSocket: Chat Example</h1>
     <div id="chatBox"></div>
     <input type="text" id="messageInput" placeholder="Type a message..." />
+    <button id="sendButton">Send</button>
 
     <script>
         // Connect to the WebSocket server
         var conn = new WebSocket('ws://localhost:8045');
 
-        // Get the chat box and input field
+        // Get the chat box, input field, and button
         var chatBox = document.getElementById('chatBox');
         var messageInput = document.getElementById('messageInput');
+        var sendButton = document.getElementById('sendButton');
 
         // On receiving a message from the server, display it
         conn.onmessage = function(e) {
             var message = e.data;
-            chatBox.innerHTML += message + '<br>';
+            var messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            chatBox.appendChild(messageDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
         };
 
         // Send a message when the user presses Enter
         messageInput.addEventListener('keypress', function(event) {
             if (event.key === 'Enter' && messageInput.value.trim() !== '') {
+                conn.send(messageInput.value);
+                messageInput.value = ''; // Clear input after sending
+            }
+        });
+
+        // Send a message when the send button is clicked
+        sendButton.addEventListener('click', function() {
+            if (messageInput.value.trim() !== '') {
                 conn.send(messageInput.value);
                 messageInput.value = ''; // Clear input after sending
             }

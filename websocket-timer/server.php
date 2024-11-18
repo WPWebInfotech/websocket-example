@@ -9,7 +9,7 @@ socket_set_option($server, SOL_SOCKET, SO_REUSEADDR, 1);
 socket_bind($server, $address, $port);
 socket_listen($server);
 
-echo "WebSocket server started on ws://{$address}:{$port}/wpweb-blogs/php/\n";
+echo "WebSocket server started on ws://{$address}:{$port}\n";
 
 // Accept incoming client connections
 while (true) {

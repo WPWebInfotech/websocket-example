@@ -1,0 +1,115 @@
+/* General body and page layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f7f7f7;
+    color: #333;
+  }
+
+  /* Title styling */
+  h1 {
+    text-align: center;
+    color: #4CAF50;
+    padding: 20px 0;
+    margin: 0;
+    font-size: 24px;
+    background-color: #fff;
+    border-bottom: 2px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Chat log container styling */
+  #chatLog {
+    width: 60%;
+    height: 400px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Input and button container styling */
+  #messageContainer {
+    display: flex;
+    width: 60%;
+  }
+
+  /* Message input box styling */
+  #messageInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px 0 0 25px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  /* Send button styling */
+  #sendButton {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0 25px 25px 0;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  /* Hover effect for the send button */
+  #sendButton:hover {
+    background-color: #0056b3;
+  }
+
+  /* Custom scrollbar styling for the chat log */
+  #chatLog::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 25px;
+  }
+
+  #chatLog::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 25px;
+  }
+
+  #chatLog::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 25px;
+  }
+
+  #chatLog::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  /* Responsive design for smaller screen sizes */
+  @media (max-width: 768px) {
+    #chatLog {
+      width: 90%;
+      height: 300px;
+    }
+
+    #messageContainer {
+      width: 90%;
+    }
+
+    #messageInput {
+      font-size: 14px;
+    }
+
+    #sendButton {
+      font-size: 14px;
+    }
+  }

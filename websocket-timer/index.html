@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple WebSocket Timer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Timer (Updated Every Second)</h2>
+    <h2>Php WebSocket : Simple Timer (Updated Every Second)</h2>
     <div id="timer">Connecting...</div>
 
     <script>
         // Create a new WebSocket connection to the server
-        var socket = new WebSocket('ws://localhost:8050/wpweb-blogs/php/');
+        var socket = new WebSocket('ws://localhost:8050');
 
         // When the connection is established
         socket.onopen = function() {
